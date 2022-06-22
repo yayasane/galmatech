@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ServiceResource\Pages;
-use App\Filament\Resources\ServiceResource\RelationManagers;
-use App\Models\Service;
+use App\Filament\Resources\PartnerResource\Pages;
+use App\Filament\Resources\PartnerResource\RelationManagers;
+use App\Models\Partner;
 use Filament\Forms;
 use Filament\Forms\Components\Select;
 use Filament\Resources\Form;
@@ -14,9 +14,9 @@ use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class ServiceResource extends Resource
+class PartnerResource extends Resource
 {
-    protected static ?string $model = Service::class;
+    protected static ?string $model = Partner::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
@@ -27,15 +27,18 @@ class ServiceResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(50),
-                Forms\Components\Textarea::make('description')
+                Forms\Components\TextInput::make('address')
                     ->required()
-                    ->maxLength(65535),
-                Forms\Components\Textarea::make('description_en')
+                    ->maxLength(150),
+                Forms\Components\TextInput::make('email')
+                    ->email()
                     ->required()
-                    ->maxLength(65535),
-                Forms\Components\TextInput::make('icon')
+                    ->maxLength(150),
+                Forms\Components\TextInput::make('phone_number')
+                    ->tel()
                     ->required()
-                    ->maxLength(30),
+                    ->maxLength(20),
+                Forms\Components\FileUpload::make('picture')->image(),
                 Select::make('app_id')
                     ->relationship('app', 'name')
                     ->required()
@@ -46,10 +49,12 @@ class ServiceResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('app_id'),
                 Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('description'),
-                Tables\Columns\TextColumn::make('description_en'),
-                Tables\Columns\IconColumn::make('icon'),
+                Tables\Columns\TextColumn::make('address'),
+                Tables\Columns\TextColumn::make('email'),
+                Tables\Columns\TextColumn::make('phone_number'),
+                Tables\Columns\ImageColumn::make('picture'),
                 Tables\Columns\TextColumn::make('created_by_user_id'),
                 Tables\Columns\TextColumn::make('updated_by_user_id'),
                 Tables\Columns\TextColumn::make('created_at')
@@ -78,9 +83,9 @@ class ServiceResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListServices::route('/'),
-            'create' => Pages\CreateService::route('/create'),
-            'edit' => Pages\EditService::route('/{record}/edit'),
+            'index' => Pages\ListPartners::route('/'),
+            'create' => Pages\CreatePartner::route('/create'),
+            'edit' => Pages\EditPartner::route('/{record}/edit'),
         ];
     }
 }

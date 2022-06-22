@@ -71,7 +71,7 @@ class CustomerResource extends Resource
                 Tables\Columns\TextColumn::make('title_en'),
                 Tables\Columns\TextColumn::make('testimonial'),
                 Tables\Columns\TextColumn::make('testimonial_en'),
-                Tables\Columns\TextColumn::make('picture'),
+                Tables\Columns\ImageColumn::make('picture'),
                 Tables\Columns\TextColumn::make('address'),
                 Tables\Columns\TextColumn::make('facebook'),
                 Tables\Columns\TextColumn::make('instagram'),
