@@ -24,14 +24,15 @@ return new class extends Migration
             $table->string('email', 150);
             $table->string('address', 150);
             $table->string('phone_number', 20);
+            $table->string('phone_number_two', 20);
             $table->string('facebook', 50);
             $table->string('website', 50);
             $table->string('instagram', 50);
             $table->string('twitter', 50)->nullable();
             $table->string('linkedin', 50)->nullable();
             $table->string('youtube', 50)->nullable();
-            $table->string('email_sign', 255)->nullable();
-            $table->string('email_sign_en', 255)->nullable();
+            $table->text('email_sign')->nullable();
+            $table->text('email_sign_en')->nullable();
             $table->foreignId('user_id')->constrained()->onDelete('restrict')->onUpdate('cascade');
             $table->unsignedBigInteger('updated_by_user_id');
             $table->timestamps();

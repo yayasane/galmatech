@@ -19,6 +19,7 @@ class App extends Model
         'email',
         'address',
         'phone_number',
+        'phone_number_two',
         'website',
         'facebook',
         'instagram',
