@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\AppResource\Pages;
+namespace App\Filament\Resources\GroupResource\Pages;
 
-use App\Filament\Resources\AppResource;
+use App\Filament\Resources\GroupResource;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\ListRecords;
 
-class ListApps extends ListRecords
+class ListGroups extends ListRecords
 {
-    protected static string $resource = AppResource::class;
+    protected static string $resource = GroupResource::class;
 
     public function mount(): void
     {

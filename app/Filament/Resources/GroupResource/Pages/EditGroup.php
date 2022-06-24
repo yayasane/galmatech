@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Filament\Resources\PartnerResource\Pages;
+namespace App\Filament\Resources\GroupResource\Pages;
 
-use App\Filament\Resources\PartnerResource;
+use App\Filament\Resources\GroupResource;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\EditRecord;
+use Illuminate\Support\Str;
 
-class EditPartner extends EditRecord
+class EditGroup extends EditRecord
 {
-    protected static string $resource = PartnerResource::class;
+    protected static string $resource = GroupResource::class;
 
     protected function getActions(): array
     {
@@ -16,10 +17,9 @@ class EditPartner extends EditRecord
             Actions\DeleteAction::make(),
         ];
     }
-
     protected function mutateFormDataBeforeSave(array $data): array
     {
-        $data['updated_by_user_id'] = auth()->user()->id;
+        $data['slug'] = Str::slug($data['name']);
 
         return $data;
     }

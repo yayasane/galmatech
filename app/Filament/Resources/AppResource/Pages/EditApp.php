@@ -17,7 +17,7 @@ class EditApp extends EditRecord
         ];
     }
 
-    protected function mutateFormDataBeforeCreate(array $data): array
+    protected function mutateFormDataBeforeSave(array $data): array
     {
         $data['updated_by_user_id'] = auth()->user()->id;
 
